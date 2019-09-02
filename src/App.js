@@ -16,13 +16,15 @@ class App extends Component {
 
   componentDidMount() {
     if (this.state.logged_in) {
-      fetch('http://localhost:8000/hello', {
+      fetch('http://localhost:8000/hello/', {
         headers: {
-          Authorization: `JWT ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       })
-          .then(res => {
-            if (res === true) {
+          .then(res => res.json())
+          .then(json => {
+              console.log(json);
+            if (json === true) {
               this.setState({username: 'user'})
             }
 
