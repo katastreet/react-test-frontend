@@ -23,7 +23,6 @@ class App extends Component {
       })
           .then(res => res.json())
           .then(json => {
-              console.log(json);
             if (json === true) {
               this.setState({username: 'user'})
             }
@@ -35,7 +34,6 @@ class App extends Component {
 
   handle_login = (e, data) => {
     e.preventDefault();
-    console.log('this', data);
     fetch('http://localhost:8000/login/', {
       method: 'POST',
       headers: {
@@ -45,7 +43,6 @@ class App extends Component {
     })
         .then(res => res.json())
         .then(json => {
-          console.log(json);
           localStorage.setItem('token', json.access);
           this.setState({
             logged_in: true,
